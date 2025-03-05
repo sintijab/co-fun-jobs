@@ -1,6 +1,4 @@
 flask
 requests
-random
-urllib
 parsel
 Gunicorn
