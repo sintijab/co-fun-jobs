@@ -6,7 +6,7 @@ from parsel import Selector
 from flask_cors import CORS,cross_origin
 
 app = Flask(__name__)
-CORS(app, origins="*")
+CORS(app, resources={r"/api/*": {"origins": "*", "allow_headers": "*", "expose_headers": "*"}})
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.94 Safari/537.36",
@@ -46,7 +46,7 @@ def get_random_headers():
 def fetch_page(url):
     """ Fetches the page content of the given URL """
 
-    response = requests.get(url, headers=get_random_headers())
+    response = requests.get(url, headers=get_random_headers(), timeout=3)
     if response.status_code == 200:
         return response.text
     else:
@@ -95,7 +95,7 @@ def after_request(response):
 def hello_world():
     return 'OK'
 
-@app.route('/scrape-jobs', methods=['GET'])
+@app.route('/api/scrape-jobs', methods=['GET'])
 @cross_origin()
 def scrape_jobs():
     country = request.args.get("country", "").strip()
