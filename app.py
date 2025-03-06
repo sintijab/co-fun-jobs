@@ -42,7 +42,7 @@ def get_random_headers():
 
 def fetch_page(url):
     """ Fetches the page content of the given URL """
-    response = requests.get(url, headers=get_random_headers())
+    response = requests.get(url)
     if response.status_code == 200:
         return response.text
     else:
