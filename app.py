@@ -89,6 +89,7 @@ def hello_world():
     return 'OK'
 
 @app.route('/scrape-jobs', methods=['GET'])
+@cross_origin()
 def scrape_jobs():
     country = request.args.get("country", "").strip()
 
