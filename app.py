@@ -84,6 +84,13 @@ def chunk_list(lst, chunk_size):
     """ Splits a list into smaller chunks """
     return [lst[i:i + chunk_size] for i in range(0, len(lst), chunk_size)]
 
+@app.after_request
+def after_request(response):
+  response.headers['Access-Control-Allow-Methods']='*'
+  response.headers['Access-Control-Allow-Origin']='*'
+  response.headers['Vary']='Origin'
+  return response
+
 @app.route('/health')
 def hello_world():
     return 'OK'
