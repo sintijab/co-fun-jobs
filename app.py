@@ -3,7 +3,7 @@ import requests
 import random
 import urllib.parse
 from parsel import Selector
-from flask_cors import CORS
+from flask_cors import CORS,cross_origin
 
 app = Flask(__name__)
 CORS(app, origins="*")
@@ -45,7 +45,7 @@ def get_random_headers():
 
 def fetch_page(url):
     """ Fetches the page content of the given URL """
-    response.headers.add("Access-Control-Allow-Origin", "*")
+
     response = requests.get(url, headers=get_random_headers())
     if response.status_code == 200:
         return response.text
