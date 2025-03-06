@@ -31,6 +31,9 @@ BASE_URL = "https://www.computerfutures.com"
 def get_random_headers():
     """ Generate randomized headers for each request """
     return {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type,Authorization",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS",
         "User-Agent": random.choice(USER_AGENTS),
         "Accept-Language": "en-US,en;q=0.9",
         "Referer": "https://www.google.com/",
@@ -42,7 +45,7 @@ def get_random_headers():
 
 def fetch_page(url):
     """ Fetches the page content of the given URL """
-    response = requests.get(url)
+    response = requests.get(url, headers=get_random_headers())
     if response.status_code == 200:
         return response.text
     else:
