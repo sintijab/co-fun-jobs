@@ -45,6 +45,7 @@ def get_random_headers():
 
 def fetch_page(url):
     """ Fetches the page content of the given URL """
+    response.headers.add("Access-Control-Allow-Origin", "*")
     response = requests.get(url, headers=get_random_headers())
     if response.status_code == 200:
         return response.text
