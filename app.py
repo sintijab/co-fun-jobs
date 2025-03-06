@@ -3,8 +3,10 @@ import requests
 import random
 import urllib.parse
 from parsel import Selector
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins="*")
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.94 Safari/537.36",
