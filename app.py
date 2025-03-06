@@ -78,6 +78,10 @@ def chunk_list(lst, chunk_size):
     """ Splits a list into smaller chunks """
     return [lst[i:i + chunk_size] for i in range(0, len(lst), chunk_size)]
 
+@app.route('/health')
+def hello_world():
+    return 'OK'
+
 @app.route('/scrape-jobs', methods=['GET'])
 def scrape_jobs():
     country = request.args.get("country", "").strip()
